@@ -11,8 +11,13 @@ int main(int argc, char **argv)
     libvlc_media_player_t  * audio_mp;
     libvlc_media_t         * audio_m;
 
+    if (argc < 2) {
+        fprintf(stderr,"usage: player <stream>\n");
+        return 1;
+    }
+
     audio_inst = libvlc_new(0,NULL);
-    audio_m    = libvlc_media_new_location(audio_inst,"<dein stream>");
+    audio_m    = libvlc_media_new_location(audio_inst,argv[1]);
     audio_mp   = libvlc_media_player_new_from_media(audio_m);
                  libvlc_media_release(audio_m);
 
